@@ -117,3 +117,13 @@ const booksByPrice = [...books].sort((a, b) => {
 booksByPrice.sort((a, b) => b.available - a.available);
 
 console.log("Libri ordinati per disponibilità e prezzo:", booksByPrice);
+
+//Snack 7 (Bonus) - Analizza i tag
+const tagCounts = books.reduce((acc, book) => {
+    book.tags.forEach(tag => {
+        acc[tag] = (acc[tag] || 0) + 1;
+    });
+    return acc;
+}, {});
+
+console.log("Conteggio tag:", tagCounts);
