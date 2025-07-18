@@ -83,3 +83,21 @@ const agesSum = ages.reduce((acc, age) => acc + age, 0);
 const averageAge = (agesSum / ages.length).toFixed(1);
 
 console.log(`Età media autori: ${averageAge} anni`);
+
+//Snack 5 (Bonus) - Raccogli i libri da API locale
+async function getBooks(ids) {
+    const baseUrl = 'http://localhost:3333/books';
+
+    const requests = ids.map(id =>
+        fetch(`${baseUrl}/${id}`)
+            .then(res => res.ok ? res.json() : null)
+            .catch(() => null)
+    );
+
+    const results = await Promise.all(requests);
+    return results.filter(book => book !== null);
+}
+
+getBooks([2, 13, 7, 21, 19]).then(fetchedBooks => {
+    console.log("Libri ricevuti da API:", fetchedBooks);
+});
