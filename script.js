@@ -101,3 +101,19 @@ async function getBooks(ids) {
 getBooks([2, 13, 7, 21, 19]).then(fetchedBooks => {
     console.log("Libri ricevuti da API:", fetchedBooks);
 });
+
+//Snack 6 (Bonus) - Ordina i libri
+const areThereAvailableBooks = books.some(book => book.available);
+console.log("Ci sono libri disponibili:", areThereAvailableBooks);
+
+// Ordine crescente
+const booksByPrice = [...books].sort((a, b) => {
+    const priceA = parseFloat(a.price.replace('€', ''));
+    const priceB = parseFloat(b.price.replace('€', ''));
+    return priceA - priceB;
+});
+
+// Ordina booksByPrice per disponibilità (true prima)
+booksByPrice.sort((a, b) => b.available - a.available);
+
+console.log("Libri ordinati per disponibilità e prezzo:", booksByPrice);
