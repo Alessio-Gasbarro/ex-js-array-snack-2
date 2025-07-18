@@ -76,3 +76,10 @@ authors.sort((a, b) => {
 });
 
 console.log("Autori ordinati:", authors);
+
+//Snack 4 - Calcola l’età media
+const ages = authors.map(author => author.age);
+const agesSum = ages.reduce((acc, age) => acc + age, 0);
+const averageAge = (agesSum / ages.length).toFixed(1);
+
+console.log(`Età media autori: ${averageAge} anni`);
