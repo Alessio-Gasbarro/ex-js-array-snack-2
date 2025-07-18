@@ -63,3 +63,16 @@ const fullPricedBook = discountedBooks.find(book => {
 });
 
 console.log("Libro con prezzo intero dopo sconto:", fullPricedBook);
+
+//Snack 3 - Ordinare gli Autori
+const authors = books.map(book => book.author);
+
+const areAuthorsAdults = authors.every(author => author.age >= 18);
+
+authors.sort((a, b) => {
+    return areAuthorsAdults
+        ? a.age - b.age   // crescente
+        : b.age - a.age;  // decrescente
+});
+
+console.log("Autori ordinati:", authors);
