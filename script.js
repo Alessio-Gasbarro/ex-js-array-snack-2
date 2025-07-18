@@ -42,5 +42,24 @@ const books = [
 
 const longBooks = books.filter(book => book.pages > 300);
 const longBooksTitles = longBooks.map(book => book.title);
-console.log("📚 Long books titles:");
+console.log("Long books titles:");
 longBooksTitles.forEach(title => console.log(" -", title));
+
+//Snack 2 - Il primo libro scontato
+const availableBooks = books.filter(book => book.available);
+
+const discountedBooks = availableBooks.map(book => {
+    const price = parseFloat(book.price.replace('€', ''));
+    const discounted = (price * 0.8).toFixed(2);
+    return {
+        ...book,
+        price: `${discounted}€`
+    };
+});
+
+const fullPricedBook = discountedBooks.find(book => {
+    const number = parseFloat(book.price);
+    return number % 1 === 0;
+});
+
+console.log("Libro con prezzo intero dopo sconto:", fullPricedBook);
